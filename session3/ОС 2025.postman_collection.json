@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "b155002a-2347-4f3b-b0ec-bbee795f88b5",
+		"name": "ОС 2025",
+		"description": "# Документация к API для работы с материалами\n\nАвтор Павел Парвадов",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40460423"
+	},
+	"item": [
+		{
+			"name": "Signin",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"corporative_email\": \"\",\n   \"password\":\"\"\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{root_url}}/api/v1/SignIn",
+					"host": [
+						"{{root_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"SignIn"
+					]
+				},
+				"description": "Данный Запрос отправляется в первую очередь и позволяет пользователю авторизоваться со своими данными.\n\nВходные данные : Email (Обязательное поле, возвращаемый тип - string), password (Обязательное поле, возвращаемый тип - string)\n\nПотенциальные ошибки : Неправильно введенные данные, такого пользователя не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Materials",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{root_url}}/api/v1/Materials",
+					"host": [
+						"{{root_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Materials"
+					]
+				},
+				"description": "Данный запрос позволяет получить полный список всех материалов.\n\nДля получения всех материалов требуется авторизация.\n\nВозвращает:\n\n1. ID (int)\n    \n2. Title (string)\n    \n3. Date_created (date)\n    \n4. type (string)\n    \n\nВходные данные не требуются\n\nПотенциальные ошибки: Возможно сервер перегружен и запросы не отправляются"
+			},
+			"response": [
+				{
+					"name": "Materials",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/Materials",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"Materials"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Обучающее видео\",\n        \"date_created\": \"Thu, 13 Feb 2025 00:00:00 GMT\",\n        \"type\": \"Видео\"\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Обучающая статья\",\n        \"date_created\": \"Thu, 13 Feb 2025 00:00:00 GMT\",\n        \"type\": \"Статья\"\n    },\n    {\n        \"id\": 3,\n        \"title\": \"Обучающая кнгиа\",\n        \"date_created\": \"Thu, 13 Feb 2025 00:00:00 GMT\",\n        \"type\": \"Книга\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Comments by material",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{root_url}}/api/v1/Material/1/Comments",
+					"host": [
+						"{{root_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Material",
+						"1",
+						"Comments"
+					]
+				},
+				"description": "Данный запрос позволяет получить полный список всех комментариев к определенному материалу.\n\nДля получения всех комментариев требуется авторизация.\n\nВозвращает:\n\n1. ID (int)\n    \n2. Text (string)\n    \n3. Date_created (date)\n    \n4. author (string)\n    \n\nПотенциальные ошибки: Возможно сервер перегружен и запросы не отправляются\n\nВходные данные не требуются"
+			},
+			"response": [
+				{
+					"name": "Comments by material",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/Material/1/Comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"Material",
+								"1",
+								"Comments"
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"text\": \"Нужны правки\",\r\n        \"date_created\": \"Thu, 20 Feb 2025 00:00:00 GMT\",\r\n        \"author\": {\r\n            \"name\": \"Иванов Иван Иванович\",\r\n            \"post\": \"Администратор\"\r\n        }\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"text\": \"Хороший материал\",\r\n        \"date_created\": \"Fri, 21 Feb 2025 00:00:00 GMT\",\r\n        \"author\": {\r\n            \"name\": \"Иванов Иван Иванович\",\r\n            \"post\": \"Администратор\"\r\n        }\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "New comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"text\": \"Hello world\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{root_url}}/api/v1/Material/1/Comment",
+					"host": [
+						"{{root_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Material",
+						"1",
+						"Comment"
+					]
+				},
+				"description": "Данный запрос позволяет отправить новый комментарий к материалу.\n\nТребуется авторизация\n\nВходные данные : Text(Обязательное поле, возвращаемый тип - string)\n\nПотенциальные ошибки: Возможно сервер перегружен и запросы не отправляются"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "root_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
